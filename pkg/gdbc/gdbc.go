@@ -1,7 +1,11 @@
 package gdbc
 
 import (
-	"gorm.io/driver/sqlite"
+	"ego/pkg/env"
+	"os"
+
+	"github.com/joho/godotenv"
+	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
@@ -14,7 +18,10 @@ type Product struct {
 
 // GetDb Comment
 func GetDb() *gorm.DB {
-	db, err := gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
+	envPath := env.GetEnvPath()
+	godotenv.Load(envPath)
+	databaseURI := os.Getenv("DEV_DATABASE_URI")
+	db, err := gorm.Open(mysql.Open(databaseURI), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
 	}
@@ -28,11 +35,13 @@ func InitDb() {
 	db.AutoMigrate(&Product{})
 }
 
+// ProductCreate Comment
 func ProductCreate() {
 	db := GetDb()
 	db.Create(&Product{Code: "D42", Price: 100})
 }
 
+// ProductGet Comment
 func ProductGet() Product {
 	db := GetDb()
 	var product Product

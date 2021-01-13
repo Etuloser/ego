@@ -18,7 +18,7 @@ func main() {
 		c.JSON(200, gin.H{
 			"data":    "",
 			"code":    200,
-			"info":    "success",
+			"message": "success",
 			"success": "true",
 		})
 	})
@@ -27,7 +27,7 @@ func main() {
 		c.JSON(200, gin.H{
 			"data":    "",
 			"code":    200,
-			"info":    "success",
+			"message": "success",
 			"success": "true",
 		})
 	})
@@ -36,7 +36,7 @@ func main() {
 		c.JSON(200, gin.H{
 			"data":    result,
 			"code":    200,
-			"info":    "success",
+			"message": "success",
 			"success": "true",
 		})
 	})
