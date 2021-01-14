@@ -17,3 +17,4 @@ vendor/
 # Custom
 go.sum
 tmp/
+.env
