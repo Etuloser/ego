@@ -16,3 +16,4 @@ vendor/
 
 # Custom
 go.sum
+tmp/

@@ -1,10 +1,8 @@
 package gdbc
 
 import (
-	"ego/pkg/env"
 	"os"
 
-	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -18,8 +16,6 @@ type Product struct {
 
 // GetDb Comment
 func GetDb() *gorm.DB {
-	envPath := env.GetEnvPath()
-	godotenv.Load(envPath)
 	databaseURI := os.Getenv("DEV_DATABASE_URI")
 	db, err := gorm.Open(mysql.Open(databaseURI), &gorm.Config{})
 	if err != nil {
